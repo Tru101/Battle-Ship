@@ -63,8 +63,32 @@ for i in range(1,19):
 #print(game_board_available)#Board with avilable spaces to make a move 
 
 
+#just to see presets:
+while True:
+    preset_player2 = ['A2', 'B2', 'C2', 'D2', 'E2', 'C8', 'C9', 'E4', 'E5', 'E6', 'E7', 'G4', 'J4', 'J5', 'G7', 'H7', 'I7', 'G9']
+    preset_player3 = ['A1', 'B1', 'F1', 'G1', 'H1', 'A10', 'B10', 'D4', 'D5', 'D6', 'D7', 'D8', 'F4', 'I5', 'H7', 'H8', 'H9', 'H10']
+    question1 = input("To see game board presets, input 1, 2, or 3. Press Enter when ready. ")
+    if question1 == "":
+        break
+    elif question1 == "1":
+        print(preset_player1)
+    elif question1 == "2":
+        print(preset_player2)
+    elif question1 == "3":
+        print(preset_player3)
+#to select presets:
+question2 = input("Please input preset. ")
+while question2 == "2":
+    preset_player1 = preset_player2
+    break
+while question2 == "3":
+    preset_player1 = preset_player3
+    break
+while question2 == "1":
+    break
+    
 for i in range(1,1000):
-    player_move = input("Players turn! Please select a Letter(Capital letter Please) from A-J and a number 1-10 to make your attack. If you want to see the moves you have already called input Z11")
+    player_move = input("Players turn! Please select a Letter(Capital letter Please) from A-J and a number 1-10 to make your attack. If you want to see the moves you have already called input Z11. ")
     if player_move == 'Z11':
         print(moves_called)
     else:
