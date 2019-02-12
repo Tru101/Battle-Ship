@@ -1,4 +1,5 @@
 import random as computer_call
+import time as thinking_call
 
 def game_board(x,y):
    z = x + y
@@ -14,6 +15,8 @@ listcounter1 = 0
 listcounter2 = 0
 listcounter3 = 0
 listcounter4 = 0
+u = 0
+p = 0
 computers_ship_decision = computer_call.randint(1,4)
 preset_player1 = ['A1','A2','A3','A4','A5','C10','D10','E10','F10','H5','H6','H7','J3','J4','E7','F7','G8','H1' ]
 preset_computer1 = ['A5','B5','C5','D5','E5','G6','G7','G8','G9','E2','F2','G2','I4','I5','C9','C10','I9','J1']
@@ -62,8 +65,6 @@ for i in range(1,19):
 #print(game_boardcomputer)#Board with values that determine a miss for the player
 #print(game_board_available)#Board with avilable spaces to make a move 
 
-
-#just to see presets:
 while True:
     preset_player2 = ['A2', 'B2', 'C2', 'D2', 'E2', 'C8', 'C9', 'E4', 'E5', 'E6', 'E7', 'G4', 'J4', 'J5', 'G7', 'H7', 'I7', 'G9']
     preset_player3 = ['A1', 'B1', 'F1', 'G1', 'H1', 'A10', 'B10', 'D4', 'D5', 'D6', 'D7', 'D8', 'F4', 'I5', 'H7', 'H8', 'H9', 'H10']
@@ -86,31 +87,60 @@ while question2 == "3":
     break
 while question2 == "1":
     break
-    
+
+
 for i in range(1,1000):
-    player_move = input("Players turn! Please select a Letter(Capital letter Please) from A-J and a number 1-10 to make your attack. If you want to see the moves you have already called input Z11. ")
+    player_move = input("Players turn! Please select a Letter (Capital letter Please) from A-J and a number 1-10 to make your attack. If you want to see the moves you have already called input Z11 ")
     if player_move == 'Z11':
         print(moves_called)
+        continue
     else:
         moves_called.append(player_move)
-    if player_move in computers_ships:
-        print("HIT!!")
-        computers_ships.remove(player_move)
-    print(computers_ships)    
     
-    if player_move in game_boardcomputer:
-        print("Miss")
-        game_boardcomputer.remove(player_move)
-    continue    
+    if player_move in computers_ships:
+        print("You HIT! a ship")
+        u = u + 1
+        #print(u)
+        computers_ships.remove(player_move)
+    #print(computers_ships)    
+    else:
+        print("You missed")
+    if u == 5:
+        print("You've sank the computer's Carrier")
+    if u == 9:
+        print("You've sank the computer's battleship")
+    if u == 12:
+        print("You've sank the computer's cruiser")
+    if u == 14 or u == 16:
+        print("You've sank the computer's destroyer")
+    if u == 17 or u == 18:
+        print("You've sank the computer's submarine")    
+    
+    print("Computer is making it's move....")
+    thinking_call.sleep(3.5)
     x = computer_call.randint(0,100)
     computer_move = game_board_available[x]
     print(computer_move)
     if computer_move in preset_player1:
-        print("HIT!!")
+        print("The computer HIT one of your ships!")
         preset_player1.remove(computer_move)
-    if computer_move in game_boardplayer:
-        print("Miss")
+        
+    else:
+        print("The computer missed")
+    if p == 5:
+        print("The computer sank your Carrier")
+    if p == 9:
+        print("The computer sank your battleship")
+    if p == 12:
+        print("The computer sank your cruiser")
+    if p == 14 or u == 16:
+        print("The computer sank your destroyer")
+    if p == 17 or p == 18:
+        print("The computer sank your submarine")    
           
-    if preset_player1 == [] or computers_ships == []:
-        print("Game is over")
+    if preset_player1 == []:
+        print("Game is over! The computer won")
+        break
+    elif computers_ships == []:
+        print("Game is over! You won!")
         break
